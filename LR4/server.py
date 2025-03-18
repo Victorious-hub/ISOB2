@@ -9,7 +9,6 @@ ack_counts = {}
 connection_attempts = {}
 flood_protection_enabled = True
 
-
 def handle_server_connection(client_socket, client_address):
     """
     Handles incoming server connections, checks for flood attacks, and responds to clients.
@@ -21,9 +20,9 @@ def handle_server_connection(client_socket, client_address):
 
     if flood_protection_enabled:
         if is_ack_flood(ip):
-            print(f"ACK flood detected from {ip}")
+            print(f"Possibly ACK flood detected from {ip}")
         elif is_syn_flood(ip):
-            print(f"SYN flood detected from {ip}")
+            print(f"Possibly SYN flood detected from {ip}")
         else:
             print(f"No flood detected from {ip}")
 
@@ -124,7 +123,6 @@ def parse_arguments():
         "--flood_protection", choices=["on", "off"], default="on",
         help="Enable or disable flood protection. Default is 'on'."
     )
-
     args = parser.parse_args()
 
     # Set flood protection flag based on the argument
